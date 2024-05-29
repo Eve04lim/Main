@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Amazon Scraper</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="mt-5">Amazon Rival Seller Scraper</h1>
+      <form method="POST">
+        <div class="form-group">
+          <label for="seller_url">Rival Seller URL:</label>
+          <input type="text" class="form-control" id="seller_url" name="seller_url" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Scrape</button>
+      </form>
+      {% if products %}
+        <h2 class="mt-5">Scraped Products</h2>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Price</th>
+              <th>Link</th>
+              <th>Demand</th>
+              <th>ASIN</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for product in products %}
+              <tr>
+                <td>{{ product.title }}</td>
+                <td>{{ product.price }}</td>
+                <td><a href="{{ product.link }}" target="_blank">View Product</a></td>
+                <td>{{ product.demand }}</td>
+                <td>{{ product.asin }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
